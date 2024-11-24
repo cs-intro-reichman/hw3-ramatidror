@@ -21,47 +21,142 @@ public class Algebra {
    		System.out.println(sqrt(36));
 		System.out.println(sqrt(263169));
    		System.out.println(sqrt(76123));
-	}  
+	}  public static int plus(int a, int b) {
+            int sum = 0;
+            if (b >= 0) {
+                for (int i = 0; i <= b; i++) {
+                    sum = a++;
+                }
+            }
+            else if (b < 0) {
+                for (int i = 0; i >= b; i--) {
+                    sum = a--;
+                }
+            }
+            return sum;
+        }
 
-	// Returns x1 + x2
-	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+        public static int minus(int a, int b) {
+            int difference = 0;
+            if (b >= 0) {
+                for (int i = 0; i <= b; i++) {
+                    difference = a--;
+                }
+            }
+            else if (b < 0) {
+                for (int i = 0; i >= b; i--) {
+                    difference = a++;
+                }
+            }
+            return difference;
+        }
 
-	// Returns x1 - x2
-	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+        public static int times(int a, int b) {
+            int product = 0;
+            if (b > 0) {
+                for (int i = 0; i < b; i++) {
+                    product = plus(product, a);
+                }
+            }
+            else if (b < 0) {
+                for (int i = 0; i > b; i--) {
+                    product = minus(product, a);
+                }
+            }
+            else {
+                product = 0;
+            }
 
-	// Returns x1 * x2
-	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+            return product;
+        }
 
-	// Returns x^n (for n >= 0)
-	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
-	}
+        public static int pow(int a, int b) {
+            int powResult = a;
+            if (b > 0) {
+                for (int i = 0; i < minus(b, 1); i++) {
+                    powResult = times(powResult, a);
+                }
+            }
+            else if (b < 0) {
+                int negativePow = 0;
+                for (int i = 0; i < minus(b, 1); i++) {
+                    negativePow = times(negativePow, a);
+                }
+                powResult = div(1, negativePow);
+            }
+            else {
+                powResult = 1;
+            }
+            return powResult;
+        }
 
-	// Returns the integer part of x1 / x2 
-	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+        public static int possitiveValue(int a) {
+            if (a > 0) {
+                a = a;
+            }
+            else {
+                a = minus(0, a);
 
-	// Returns x1 % x2
-	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}	
+            }
+            return a;
+        }
 
-	// Returns the integer part of sqrt(x) 
-	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
-	}	  	  
+
+        public static int div(int a, int divisor) {
+            int quotient = 0;
+            if (divisor == 0) {
+                System.out.println (" ERROR");
+            }
+            else if ((divisor > 0) && (a > 0)) {
+                for (int i = 0; plus((times(divisor, i)), divisor) <= a; i++) {
+                    quotient++;
+                }
+            }
+            else if ((divisor > 0) && (a < 0)) {
+                a = possitiveValue(a);
+                for (int i = 0; plus((times(divisor, i)), divisor) <= a; i++) {
+                    quotient++;
+                }
+                quotient = minus(0, quotient);
+            }
+            else if ((divisor < 0) && (a > 0)) {
+                divisor = possitiveValue(divisor);
+                for (int i = 0; plus((times(divisor, i)), divisor) <= a; i++) {
+                    quotient++;
+                }
+                quotient = minus(0, quotient);
+            }
+            else if ((divisor < 0) && (a < 0)) {
+                divisor = possitiveValue(divisor);
+                a = possitiveValue(a);
+                for (int i = 0; plus((times(divisor, i)), divisor) <= a; i++) {
+                    quotient++;
+                }
+            }
+                return quotient;
+        }
+
+        public static int modulo(int a, int b) {
+            int remainder = minus(a, times(b, (div(a, b))));
+            return remainder;
+        }
+
+        public static int sqrt(int a) {
+            int root = 0;
+                if (a >= 0) {
+                    while ((pow(root, 2)) <= a) {
+                    root++;
+                    if (pow(root, 2) >= a) {
+                    break;
+                        }
+                    }
+                    if ((pow (root,2)) > a) {
+                        root = minus (root, 1);
+                }
+            }
+                else {
+                    System.out.println (" ERROR");
+                }
+            return root;
+        }	  	  
 }
