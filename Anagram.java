@@ -61,7 +61,7 @@ public class Anagram {
 	}
 
 
-	
+
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
@@ -73,6 +73,9 @@ public class Anagram {
 			if (str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') {
 				newStr = newStr + (char) (str.charAt(i) + 32);
 			} else if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
+				newStr = newStr + (str.charAt(i));
+			}
+			else if (str.charAt(i) == ' ') {
 				newStr = newStr + (str.charAt(i));
 			}
 		}
